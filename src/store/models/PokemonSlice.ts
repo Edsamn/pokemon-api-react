@@ -3,9 +3,6 @@ import {api} from "../../services/api";
 import PokemonType from "../../Types/PokemonType";
 import PokemonDetails from "../../Types/PokemonDetails";
 
-// eslint-disable-next-line prefer-const
-let offset = 0;
-
 export const getPokemons = createAsyncThunk("pokemons/getPokemons", async (offset: number) => {
   try {
     const response = await api.get(`/pokemon?offset=${offset}&limit=20`);
@@ -28,10 +25,10 @@ const initialState: PokemonDetails[] = [];
 
 const pokemonSlice = createSlice({
   name: "pokemons",
-  initialState: {pokemons: initialState, loading: false},
+  initialState: {pokemons: initialState, loading: false, offset: 0},
   reducers: {
-    showPokemons: (state, action: PayloadAction<PokemonDetails>) => {
-      state.pokemons.push({...action.payload});
+    setOffset: (state, action: PayloadAction<number>) => {
+      state.offset = action.payload;
       return state;
     },
   },
@@ -52,5 +49,5 @@ const pokemonSlice = createSlice({
   },
 });
 
-export const {showPokemons} = pokemonSlice.actions;
+export const {setOffset} = pokemonSlice.actions;
 export default pokemonSlice.reducer;

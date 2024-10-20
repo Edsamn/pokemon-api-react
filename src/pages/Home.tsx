@@ -2,20 +2,28 @@ import DefaultLayout from "../config/layout/DefaultLayout";
 import {Box, Button, CircularProgress, Grid2, Typography} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {useEffect} from "react";
-import {getPokemons} from "../store/models/PokemonSlice";
+import {getPokemons, setOffset} from "../store/models/PokemonSlice";
 import PokemonDetails from "../Types/PokemonDetails";
 import {Link} from "react-router-dom";
-
-// eslint-disable-next-line prefer-const
-let offset = 0;
 
 function Home() {
   const dispatch = useAppDispatch();
   const pokemonsRedux = useAppSelector((state) => state.pokemons);
 
   useEffect(() => {
-    dispatch(getPokemons(offset));
-  }, []);
+    dispatch(getPokemons(pokemonsRedux.offset));
+  }, [dispatch, pokemonsRedux.offset]);
+
+  function nextPage() {
+    dispatch(setOffset(pokemonsRedux.offset + 20));
+    console.log(dispatch);
+  }
+
+  function prevPage() {
+    if (pokemonsRedux.offset > 0) {
+      dispatch(setOffset(pokemonsRedux.offset - 20));
+    }
+  }
 
   if (pokemonsRedux.loading) {
     return (
@@ -27,7 +35,7 @@ function Home() {
 
   return (
     <DefaultLayout>
-      <Grid2 container>
+      <Grid2 container sx={{display: "flex", justifyContent: "center"}}>
         <Grid2 sx={{display: "flex", flexWrap: "wrap", justifyContent: "space-evenly", alignItems: "center"}}>
           {pokemonsRedux.pokemons.map((pokemon: PokemonDetails) => (
             <Box key={pokemon.id} sx={{display: "flex", flexDirection: "column", height: "300px", width: "200px"}}>
@@ -51,6 +59,12 @@ function Home() {
             </Box>
           ))}
         </Grid2>
+        <Button sx={{backgroundColor: "info"}} onClick={prevPage} disabled={pokemonsRedux.offset === 0}>
+          Voltar
+        </Button>
+        <Button onClick={nextPage} disabled={pokemonsRedux.offset === 1300}>
+          próxima
+        </Button>
       </Grid2>
     </DefaultLayout>
   );
