@@ -2,7 +2,7 @@ import DefaultLayout from "../config/layout/DefaultLayout";
 import {Box, Button, CircularProgress, Grid2, Typography} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {useEffect} from "react";
-import {getPokemons, setOffset} from "../store/models/PokemonSlice";
+import {addToPokedex, getPokemons, setOffset} from "../store/models/PokemonSlice";
 import PokemonDetails from "../Types/PokemonDetails";
 import {Link} from "react-router-dom";
 
@@ -22,6 +22,10 @@ function Home() {
     if (pokemonsRedux.offset > 0) {
       dispatch(setOffset(pokemonsRedux.offset - 20));
     }
+  }
+
+  function saveOnPokedex(pokemon: PokemonDetails) {
+    dispatch(addToPokedex(pokemon));
   }
 
   if (pokemonsRedux.loading) {
@@ -55,22 +59,26 @@ function Home() {
                   </Typography>
                 </Link>
                 <Typography>{pokemon.height / 10} metro(s)</Typography>
-                <Button color="error">Salvar na Pokédex</Button>
+                <Button color="error" onClick={() => saveOnPokedex(pokemon)}>
+                  Salvar na Pokédex
+                </Button>
               </Box>
             </Box>
           ))}
         </Grid2>
-        <Button
-          variant="contained"
-          sx={{backgroundColor: "info"}}
-          onClick={prevPage}
-          disabled={pokemonsRedux.offset === 0}
-        >
-          Voltar
-        </Button>
-        <Button variant="contained" onClick={nextPage} disabled={pokemonsRedux.offset === 1300}>
-          próxima
-        </Button>
+        <Box sx={{display: "flex", width: "200px", justifyContent: "space-between", padding: "20px"}}>
+          <Button
+            variant="contained"
+            sx={{backgroundColor: "info"}}
+            onClick={prevPage}
+            disabled={pokemonsRedux.offset === 0}
+          >
+            Voltar
+          </Button>
+          <Button variant="contained" onClick={nextPage} disabled={pokemonsRedux.offset === 1300}>
+            próxima
+          </Button>
+        </Box>
       </Grid2>
     </DefaultLayout>
   );

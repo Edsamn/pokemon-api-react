@@ -1,4 +1,4 @@
-import {Grid2, Input} from "@mui/material";
+import {Grid2} from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import {Link} from "react-router-dom";
@@ -18,7 +18,6 @@ function MyAppHeader() {
         }}
       >
         <Typography variant="h3">Pokémon</Typography>
-        <Input placeholder="Procurar..."></Input>
         <Link to={"/my-pokedex"}>
           <Typography>Minha Pokédex</Typography>
         </Link>

@@ -21,15 +21,25 @@ export const getPokemons = createAsyncThunk("pokemons/getPokemons", async (offse
   }
 });
 
-const initialState: PokemonDetails[] = [];
+const initialState = {pokemons: [] as PokemonDetails[], loading: false, offset: 0, pokedex: [] as PokemonDetails[]};
 
 const pokemonSlice = createSlice({
   name: "pokemons",
-  initialState: {pokemons: initialState, loading: false, offset: 0},
+  initialState,
   reducers: {
     setOffset: (state, action: PayloadAction<number>) => {
       state.offset = action.payload;
       return state;
+    },
+    addToPokedex: (state, action: PayloadAction<PokemonDetails>) => {
+      const pokemonExists = state.pokedex.find((pokemon) => pokemon.id === action.payload.id);
+
+      if (!pokemonExists) {
+        state.pokedex.push(action.payload);
+      } else {
+        const findIndex = state.pokedex.findIndex(pokemonExists);
+        state.pokedex.splice(findIndex, 1);
+      }
     },
   },
   extraReducers(builder) {
@@ -49,5 +59,5 @@ const pokemonSlice = createSlice({
   },
 });
 
-export const {setOffset} = pokemonSlice.actions;
+export const {setOffset, addToPokedex} = pokemonSlice.actions;
 export default pokemonSlice.reducer;

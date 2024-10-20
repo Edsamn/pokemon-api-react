@@ -11,7 +11,7 @@ function DefaultLayout({children}: DefaultLayoutProps) {
   return (
     <>
       <MyAppHeader />
-      <Container>{children}</Container>;
+      <Container>{children}</Container>
       <Footer />
     </>
   );

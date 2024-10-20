@@ -8,10 +8,10 @@ import DefaultLayout from "../config/layout/DefaultLayout";
 function Details() {
   const {id} = useParams<{id: number}>();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const pokemonDetailsRedux = useAppSelector((state) => state.pokemon);
   const statsTotal = pokemonDetailsRedux.pokemon.stats.map((stat) => stat.base_stat);
   const total = statsTotal.reduce((a, b) => a + b, 0);
+  const navigate = useNavigate();
 
   function getBack() {
     navigate("/");
@@ -72,13 +72,11 @@ function Details() {
           <span style={{color: "blue"}}>Total dos Stats: </span>
           {total}
         </Typography>
-        <Typography>
-          <span style={{color: "blue"}}>Movimentos aprendidos: </span>
-          {pokemonDetailsRedux.pokemon.moves.map((move) => move.move.name).join(", ")}
-        </Typography>
-        <Button variant="contained" onClick={getBack}>
-          Voltar à lista
-        </Button>
+        <Box sx={{padding: "20px"}}>
+          <Button variant="contained" onClick={getBack}>
+            Voltar à lista
+          </Button>
+        </Box>
       </Box>
     </DefaultLayout>
   );
