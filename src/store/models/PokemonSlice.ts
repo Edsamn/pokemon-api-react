@@ -1,24 +1,36 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import PokemonType from "../../Types/PokemonType";
 import {api} from "../../services/api";
+import PokemonType from "../../Types/PokemonType";
+import PokemonDetails from "../../Types/PokemonDetails";
 
-const initialState: PokemonType[] = [];
+// eslint-disable-next-line prefer-const
+let offset = 0;
 
-const getPokemons = createAsyncThunk("pokemons/getPokemons", async () => {
+export const getPokemons = createAsyncThunk("pokemons/getPokemons", async (offset: number) => {
   try {
-    const response = await api.get("/pokemon");
+    const response = await api.get(`/pokemon?offset=${offset}&limit=20`);
+    const pokeList = response.data.results;
 
-    return response.data;
+    const getDetails = pokeList.map(async (pokemon: PokemonType) => {
+      const detailsList = await api.get<PokemonDetails>(pokemon.url);
+      return detailsList.data;
+    });
+
+    const completeResults = await Promise.all(getDetails);
+
+    return completeResults;
   } catch (error) {
     console.log(error);
   }
 });
 
+const initialState: PokemonDetails[] = [];
+
 const pokemonSlice = createSlice({
   name: "pokemons",
   initialState: {pokemons: initialState, loading: false},
   reducers: {
-    addPokemons: (state, action: PayloadAction<PokemonType>) => {
+    showPokemons: (state, action: PayloadAction<PokemonDetails>) => {
       state.pokemons.push({...action.payload});
       return state;
     },
@@ -40,6 +52,5 @@ const pokemonSlice = createSlice({
   },
 });
 
-export {getPokemons};
-export const {addPokemons} = pokemonSlice.actions;
+export const {showPokemons} = pokemonSlice.actions;
 export default pokemonSlice.reducer;

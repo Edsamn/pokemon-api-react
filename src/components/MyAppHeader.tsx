@@ -1,11 +1,11 @@
+import {Grid2, Input} from "@mui/material";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {Link} from "react-router-dom";
 
 function MyAppHeader() {
   return (
-    <Box sx={{flexGrow: 1}}>
+    <Grid2 size={{xs: 12, md: 8}}>
       <AppBar
         position="static"
         color="info"
@@ -18,11 +18,12 @@ function MyAppHeader() {
         }}
       >
         <Typography variant="h3">Pokémon</Typography>
+        <Input placeholder="Procurar..."></Input>
         <Link to={"/my-pokedex"}>
           <Typography>Minha Pokédex</Typography>
         </Link>
       </AppBar>
-    </Box>
+    </Grid2>
   );
 }
 
