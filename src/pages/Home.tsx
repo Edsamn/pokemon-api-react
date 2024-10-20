@@ -54,7 +54,7 @@ function Home() {
                   <Typography variant="h6">{pokemon.name}</Typography>
                 </Link>
                 <Typography>{pokemon.height / 10} metro(s)</Typography>
-                <Button>Salvar na Pokédex</Button>
+                <Button color="success">Salvar na Pokédex</Button>
               </Box>
             </Box>
           ))}
