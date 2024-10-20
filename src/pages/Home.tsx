@@ -16,7 +16,6 @@ function Home() {
 
   function nextPage() {
     dispatch(setOffset(pokemonsRedux.offset + 20));
-    console.log(dispatch);
   }
 
   function prevPage() {
@@ -50,19 +49,26 @@ function Home() {
               ></Box>
               <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
                 <Typography>#{pokemon.id}</Typography>
-                <Link to={"/details"}>
-                  <Typography variant="h6">{pokemon.name}</Typography>
+                <Link to={`/details/${pokemon.id}`}>
+                  <Typography sx={{textDecoration: "underline"}} variant="h6">
+                    {pokemon.name[0].toUpperCase() + pokemon.name.substring(1)}
+                  </Typography>
                 </Link>
                 <Typography>{pokemon.height / 10} metro(s)</Typography>
-                <Button color="success">Salvar na Pokédex</Button>
+                <Button color="error">Salvar na Pokédex</Button>
               </Box>
             </Box>
           ))}
         </Grid2>
-        <Button sx={{backgroundColor: "info"}} onClick={prevPage} disabled={pokemonsRedux.offset === 0}>
+        <Button
+          variant="contained"
+          sx={{backgroundColor: "info"}}
+          onClick={prevPage}
+          disabled={pokemonsRedux.offset === 0}
+        >
           Voltar
         </Button>
-        <Button onClick={nextPage} disabled={pokemonsRedux.offset === 1300}>
+        <Button variant="contained" onClick={nextPage} disabled={pokemonsRedux.offset === 1300}>
           próxima
         </Button>
       </Grid2>
