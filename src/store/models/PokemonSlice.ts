@@ -31,16 +31,6 @@ const pokemonSlice = createSlice({
       state.offset = action.payload;
       return state;
     },
-    addToPokedex: (state, action: PayloadAction<PokemonDetails>) => {
-      const pokemonExists = state.pokedex.find((pokemon) => pokemon.id === action.payload.id);
-
-      if (!pokemonExists) {
-        state.pokedex.push(action.payload);
-      } else {
-        const findIndex = state.pokedex.findIndex(pokemonExists);
-        state.pokedex.splice(findIndex, 1);
-      }
-    },
   },
   extraReducers(builder) {
     builder.addCase(getPokemons.fulfilled, (state, action) => {
