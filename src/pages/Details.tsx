@@ -78,7 +78,7 @@ function Details() {
           <span style={{color: "blue"}}>Total dos Stats: </span>
           {total}
         </Typography>
-        <Box sx={{padding: "20px", marginBottom: "40px"}}>
+        <Box sx={{padding: "20px", marginBottom: "80px"}}>
           <Button variant="contained" onClick={getBack}>
             Voltar à lista
           </Button>
