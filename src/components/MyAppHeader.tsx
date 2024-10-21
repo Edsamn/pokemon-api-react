@@ -27,7 +27,7 @@ function MyAppHeader() {
           Pokémon
         </Typography>
         <Link to={"/my-pokedex"}>
-          <Typography variant="h5">Minha Pokédex</Typography>
+          <Typography>Minha Pokédex</Typography>
         </Link>
       </AppBar>
     </Grid2>
