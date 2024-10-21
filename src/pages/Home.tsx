@@ -47,7 +47,7 @@ function Home() {
             return (
               <Box
                 key={pokemon.id}
-                sx={{display: "flex", flexDirection: "column", height: "300px", width: "200px", gap: "10px"}}
+                sx={{display: "flex", flexDirection: "column", height: "340px", width: "200px", gap: "10px"}}
               >
                 <Box
                   sx={{

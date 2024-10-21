@@ -6,7 +6,7 @@ import {getPokemonDetails} from "../store/models/PokemonDetailsSlice";
 import DefaultLayout from "../config/layout/DefaultLayout";
 
 function Details() {
-  const {id} = useParams<{id: number}>();
+  const {id} = useParams<{id: string}>();
   const dispatch = useAppDispatch();
   const pokemonDetailsRedux = useAppSelector((state) => state.pokemon);
   const statsTotal = pokemonDetailsRedux.pokemon.stats.map((stat) => stat.base_stat);
@@ -19,7 +19,7 @@ function Details() {
 
   useEffect(() => {
     if (id) {
-      dispatch(getPokemonDetails(id));
+      dispatch(getPokemonDetails(Number(id)));
     }
   }, [id, dispatch]);
 

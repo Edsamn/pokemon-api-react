@@ -5,7 +5,7 @@ import PokemonDetails from "../../Types/PokemonDetails";
 
 export const getPokemons = createAsyncThunk("pokemons/getPokemons", async (offset: number) => {
   try {
-    const response = await api.get(`/pokemon?offset=${offset}&limit=20`);
+    const response = await api.get<{results: PokemonType[]}>(`/pokemon?offset=${offset}&limit=20`);
     const pokeList = response.data.results;
 
     const getDetails = pokeList.map(async (pokemon: PokemonType) => {
@@ -49,5 +49,5 @@ const pokemonSlice = createSlice({
   },
 });
 
-export const {setOffset, addToPokedex} = pokemonSlice.actions;
+export const {setOffset} = pokemonSlice.actions;
 export default pokemonSlice.reducer;
