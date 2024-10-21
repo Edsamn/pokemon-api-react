@@ -29,8 +29,18 @@ function MyPokedex() {
   return (
     <DefaultLayout>
       <Grid2 container sx={{display: "flex", justifyContent: "center"}}>
-        <Typography variant="h4">Minha Pokédex</Typography>
-        <Grid2 sx={{display: "flex", flexWrap: "wrap", justifyContent: "space-evenly", alignItems: "center"}}>
+        <Typography sx={{position: "absolute", padding: "20px"}} variant="h4">
+          Minha Pokédex
+        </Typography>
+        <Grid2
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            paddingTop: "50px",
+          }}
+        >
           {pokedexRedux.map((pokemon: PokemonDetails) => (
             <Box key={pokemon.id} sx={{display: "flex", flexDirection: "column", height: "300px", width: "250px"}}>
               <Box
@@ -48,12 +58,12 @@ function MyPokedex() {
             </Box>
           ))}
         </Grid2>
-        <Box sx={{padding: "20px"}}>
-          <Button variant="contained" onClick={getBack}>
-            Voltar à lista
-          </Button>
-        </Box>
       </Grid2>
+      <Box sx={{marginBottom: "60px", display: "flex", alignSelf: "center", justifyContent: "center"}}>
+        <Button variant="contained" onClick={getBack}>
+          Voltar à lista
+        </Button>
+      </Box>
     </DefaultLayout>
   );
 }

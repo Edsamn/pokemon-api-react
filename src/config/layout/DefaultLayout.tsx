@@ -11,7 +11,7 @@ function DefaultLayout({children}: DefaultLayoutProps) {
   return (
     <>
       <MyAppHeader />
-      <Container>{children}</Container>
+      <Container sx={{height: "80vh"}}>{children}</Container>
       <Footer />
     </>
   );

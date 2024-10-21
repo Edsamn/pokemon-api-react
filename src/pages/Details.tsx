@@ -29,7 +29,7 @@ function Details() {
 
   return (
     <DefaultLayout>
-      <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", padding: "20px"}}>
+      <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", padding: "20px", gap: "5px"}}>
         <Typography variant="h3">
           {pokemonDetailsRedux.pokemon && pokemonDetailsRedux.pokemon.name
             ? pokemonDetailsRedux.pokemon.name[0].toUpperCase() + pokemonDetailsRedux.pokemon.name.substring(1)
@@ -61,12 +61,16 @@ function Details() {
           {pokemonDetailsRedux.pokemon.abilities.map((ability) => ability.ability.name).join(", ")}
         </Typography>
         <Typography>
-          <span style={{color: "blue"}}>
-            Stats (em ordem): vitalidade, ataque, defesa, ataque especial, defesa especial, velocidade
-          </span>
+          <span style={{color: "blue"}}>Stats:</span>
           {pokemonDetailsRedux.pokemon.stats.map((stat) => (
-            <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-              {stat.base_stat}
+            <Box
+              key={stat.stat.name}
+              sx={{display: "flex", justifyContent: "space-between", width: "200px", marginTop: "5px"}}
+            >
+              <Typography variant="body1" sx={{textTransform: "capitalize"}}>
+                {stat.stat.name}
+              </Typography>
+              <Typography variant="body1">{stat.base_stat}</Typography>
             </Box>
           ))}
         </Typography>
@@ -74,7 +78,7 @@ function Details() {
           <span style={{color: "blue"}}>Total dos Stats: </span>
           {total}
         </Typography>
-        <Box sx={{padding: "20px"}}>
+        <Box sx={{padding: "20px", marginBottom: "40px"}}>
           <Button variant="contained" onClick={getBack}>
             Voltar à lista
           </Button>

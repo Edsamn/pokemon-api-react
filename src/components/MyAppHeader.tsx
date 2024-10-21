@@ -15,6 +15,7 @@ function MyAppHeader() {
           justifyContent: "space-between",
           alignItems: "center",
           paddingX: "20px",
+          height: "10vh",
         }}
       >
         <Typography variant="h3">Pokémon</Typography>
