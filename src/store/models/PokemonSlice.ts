@@ -34,7 +34,7 @@ const pokemonSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(getPokemons.fulfilled, (state, action) => {
-      state.pokemons = action.payload;
+      state.pokemons = action.payload || [];
       state.loading = false;
       return state;
     });

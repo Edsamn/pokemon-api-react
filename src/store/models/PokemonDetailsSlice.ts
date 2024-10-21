@@ -7,9 +7,8 @@ export const getPokemonDetails = createAsyncThunk<PokemonDetails, number>(
   async (id: number) => {
     try {
       const response = await api.get(`/pokemon/${id}`);
-      const pokemon = response.data;
 
-      return pokemon;
+      return response.data as PokemonDetails;
     } catch (error) {
       console.log(error);
     }
