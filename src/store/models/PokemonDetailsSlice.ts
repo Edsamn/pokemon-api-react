@@ -117,7 +117,7 @@ const pokemonDetailsSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(getPokemonDetails.fulfilled, (state, action) => {
-      state.pokemon = action.payload;
+      state.pokemon = action.payload || [];
       state.loading = false;
       return state;
     });
