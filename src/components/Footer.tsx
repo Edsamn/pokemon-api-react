@@ -14,6 +14,7 @@ function Footer() {
           height: "10vh",
           position: "fixed",
           width: "100vw",
+          textAlign: "justify",
         }}
       >
         <Typography>Created by Eduardo Marinho Silva Ribas, 2024, Growdev.</Typography>

@@ -74,7 +74,7 @@ function Home() {
             );
           })}
         </Grid2>
-        <Box sx={{padding: "20px", width: "250px", display: "flex", justifyContent: "space-between", marginY: "50px"}}>
+        <Box sx={{padding: "20px", width: "250px", display: "flex", justifyContent: "space-between", marginY: "80px"}}>
           <Button
             variant="contained"
             sx={{backgroundColor: "info"}}

@@ -59,7 +59,7 @@ function MyPokedex() {
           ))}
         </Grid2>
       </Grid2>
-      <Box sx={{marginBottom: "60px", display: "flex", alignSelf: "center", justifyContent: "center"}}>
+      <Box sx={{marginY: "80px", display: "flex", alignSelf: "center", justifyContent: "center"}}>
         <Button variant="contained" onClick={getBack}>
           Voltar à lista
         </Button>

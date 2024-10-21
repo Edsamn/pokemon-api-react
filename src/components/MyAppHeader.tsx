@@ -1,9 +1,14 @@
 import {Grid2} from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function MyAppHeader() {
+  const navigate = useNavigate();
+
+  function getBack() {
+    navigate("/");
+  }
   return (
     <Grid2 size={{xs: 12, md: 8}}>
       <AppBar
@@ -18,9 +23,11 @@ function MyAppHeader() {
           height: "10vh",
         }}
       >
-        <Typography variant="h3">Pokémon</Typography>
+        <Typography variant="h3" onClick={getBack} sx={{cursor: "pointer"}}>
+          Pokémon
+        </Typography>
         <Link to={"/my-pokedex"}>
-          <Typography>Minha Pokédex</Typography>
+          <Typography variant="h5">Minha Pokédex</Typography>
         </Link>
       </AppBar>
     </Grid2>
