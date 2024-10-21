@@ -4,13 +4,14 @@ import PokemonDetails from "../../Types/PokemonDetails";
 
 export const getPokemonDetails = createAsyncThunk<PokemonDetails, number>(
   "pokemons/getPokemonDetails",
-  async (id: number) => {
+  async (id: number, {rejectWithValue}) => {
     try {
       const response = await api.get(`/pokemon/${id}`);
 
       return response.data as PokemonDetails;
     } catch (error) {
       console.log(error);
+      return rejectWithValue("Erro ao buscar detalhes do Pokémon");
     }
   }
 );
