@@ -31,7 +31,9 @@ function Details() {
     <DefaultLayout>
       <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", padding: "20px"}}>
         <Typography variant="h3">
-          {pokemonDetailsRedux.pokemon.name[0].toUpperCase() + pokemonDetailsRedux.pokemon.name.substring(1)}
+          {pokemonDetailsRedux.pokemon && pokemonDetailsRedux.pokemon.name
+            ? pokemonDetailsRedux.pokemon.name[0].toUpperCase() + pokemonDetailsRedux.pokemon.name.substring(1)
+            : "Carregando..."}
         </Typography>
         <Box
           sx={{
